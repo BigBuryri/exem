@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+/client/
+Модули 1-3 (основная часть)/client/public/fonts/_tmp/
+Модули 1-3 (основная часть)/client/public/fonts/_oswald/
+~$*

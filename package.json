@@ -1,0 +1,10 @@
+{
+  "name": "banketam-exam",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Демоэкзамен: Банкетам.Нет (модули 1–3) + Код безопасности (модуль 4)",
+  "scripts": {
+    "install:all": "npm run install:all --prefix \"Модули 1-3 (основная часть)\"",
+    "dev": "npm run dev --prefix \"Модули 1-3 (основная часть)\""
+  }
+}

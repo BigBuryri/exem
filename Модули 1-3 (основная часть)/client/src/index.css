@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-base text-banquet-ink;
+    background-color: #f5f5f5;
+  }
+
+  h1 {
+    @apply text-2xl font-bold text-banquet-ink;
+  }
+
+  h2 {
+    @apply text-xl font-semibold text-banquet-ink;
+  }
+
+  h3 {
+    @apply text-lg font-medium text-banquet-ink;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded border focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-banquet-wine text-white border-banquet-wine;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-[#6a2d3c];
+  }
+
+  .btn-primary:focus {
+    --tw-ring-color: #7A3344;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-banquet-ink border-gray-300;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    @apply bg-gray-50;
+  }
+
+  .input {
+    @apply block w-full px-3 py-2 rounded border border-gray-300 bg-white text-base focus:outline-none focus:ring-1 focus:ring-banquet-wine focus:border-banquet-wine;
+  }
+
+  .input-error {
+    @apply border-red-500;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-banquet-ink mb-1;
+  }
+
+  .card {
+    @apply bg-white rounded border border-gray-200 p-4;
+  }
+
+  .link-accent {
+    @apply text-banquet-wine underline hover:no-underline;
+  }
+
+  .text-secondary {
+    @apply text-sm text-banquet-muted;
+  }
+
+  .badge {
+    @apply inline-block px-2 py-0.5 text-xs font-medium rounded bg-gray-100 text-banquet-ink;
+  }
+}

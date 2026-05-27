@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net" agent="0">
+  <diagram id="er-banketam" name="ER-диаграмма">
+    <mxGraphModel dx="1091" dy="1139" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users" parent="1" style="swimlane;fontStyle=1;align=center;startSize=32;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" value="users&#xa;(Пользователи)" vertex="1">
+          <mxGeometry height="292" width="260" x="70" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="users-id" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;" value="id — SERIAL, PK" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="users-login" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="login — VARCHAR(64), UNIQUE, NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="users-pass" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="password — VARCHAR(255), NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="users-name" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="full_name — VARCHAR(255), NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="users-phone" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="phone — VARCHAR(32), NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="users-email" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="email — VARCHAR(255), NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="users-role" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="role — user | admin, NOT NULL" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="users-created" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="created_at — TIMESTAMPTZ" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="users-updated" parent="users" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="updated_at — TIMESTAMPTZ" vertex="1">
+          <mxGeometry height="24" width="240" x="10" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="apps" parent="1" style="swimlane;fontStyle=1;align=center;startSize=32;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" value="applications&#xa;(Заявки)" vertex="1">
+          <mxGeometry height="320" width="320" x="500" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-id" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;" value="id — SERIAL, PK" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-user" parent="apps" style="text;strokeColor=none;fillColor=#fff2cc;align=left;verticalAlign=middle;fontStyle=2;" value="user_id — INTEGER, FK → users.id, NOT NULL" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-status" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="status — new | assigned | completed" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-type" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="type — VARCHAR(64), NOT NULL" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-data" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="data — JSONB (roomType, startDate, paymentMethod)" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-comment" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="admin_comment — TEXT" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-rating" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="rating — SMALLINT (1–5)" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-review" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="review — TEXT" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-created" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="created_at — TIMESTAMPTZ" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-updated" parent="apps" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" value="updated_at — TIMESTAMPTZ" vertex="1">
+          <mxGeometry height="24" width="300" x="10" y="258" as="geometry" />
+        </mxCell>
+        <mxCell id="rel" edge="1" parent="1" source="users" style="endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;strokeWidth=2;strokeColor=#333333;" target="apps" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-label" connectable="0" parent="rel" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;" value="1 : N&#xa;ON DELETE CASCADE" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;fillColor=#fff2cc;strokeColor=light-dark(#D6B656,#E6D0DE);fontSize=11;" value="Связь: один пользователь - много заявок&lt;br&gt;Индексы: user_id, status, created_at&lt;br&gt;Триггеры: updated_at на обеих таблицах" vertex="1">
+          <mxGeometry height="70" width="320" x="70" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="YEZaye6XCj1ICJeWOeca-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="450" width="830" x="30" y="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
