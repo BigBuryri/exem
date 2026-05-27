@@ -12,6 +12,9 @@ const extractApiErrorMessage = (error, fallbackMessage) => {
   if (Array.isArray(responseData?.errors) && responseData.errors.length > 0) {
     return responseData.errors[0]?.msg || fallbackMessage
   }
+  if (!error?.response) {
+    return 'Сервер недоступен. Запустите backend: npm run dev'
+  }
   return fallbackMessage
 }
 
@@ -28,20 +31,36 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      authService.getProfile()
-        .then(userData => {
+    let cancelled = false
+
+    const bootstrap = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        const userData = await authService.getProfile()
+        if (!cancelled) {
           setUser(userData)
-        })
-        .catch(() => {
+        }
+      } catch {
+        if (!cancelled) {
           localStorage.removeItem('token')
-        })
-        .finally(() => {
+          setUser(null)
+        }
+      } finally {
+        if (!cancelled) {
           setLoading(false)
-        })
-    } else {
-      setLoading(false)
+        }
+      }
+    }
+
+    bootstrap()
+
+    return () => {
+      cancelled = true
     }
   }, [])
 

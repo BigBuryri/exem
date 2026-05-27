@@ -84,7 +84,11 @@ router.post('/login', [
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      const validationErrors = errors.array();
+      return res.status(400).json({
+        message: validationErrors[0].msg,
+        errors: validationErrors
+      });
     }
 
     const { login, password } = req.body;

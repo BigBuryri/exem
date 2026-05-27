@@ -22,6 +22,11 @@ app.use((err, req, res, next) => {
 
 async function start() {
   try {
+    if (!process.env.JWT_SECRET) {
+      process.env.JWT_SECRET = 'banketam_dev_secret';
+      console.warn('JWT_SECRET не задан — используется значение по умолчанию для разработки');
+    }
+
     await sequelize.authenticate();
     console.log('База данных подключена');
 
@@ -36,7 +41,7 @@ async function start() {
         login: process.env.ADMIN_LOGIN || 'Admin26',
         password: process.env.ADMIN_PASSWORD || 'Demo20',
         fullName: 'Администратор',
-        phone: '+7(999)-999-99-99',
+        phone: '+7 (999) 999-99-99',
         email: 'admin@banketam.net',
         role: 'admin'
       });

@@ -3,23 +3,38 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --shadow-card: 0 4px 24px -4px rgba(218, 165, 32, 0.18), 0 2px 8px -2px rgba(0, 0, 0, 0.06);
+    --shadow-card-hover: 0 12px 32px -8px rgba(218, 165, 32, 0.28), 0 4px 12px -4px rgba(0, 0, 0, 0.08);
+  }
+
   body {
-    @apply antialiased font-sans text-body text-banquet-ink;
-    background: linear-gradient(165deg, #FFFDD0 0%, #FFFDD0 45%, #FFDAB9 100%);
+    @apply antialiased font-sans text-banquet-ink;
+    font-size: 16px;
+    line-height: 1.6;
+    background: linear-gradient(165deg, #fffdd0 0%, #fffdd0 45%, #ffdab9 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   h1 {
-    @apply text-h1 font-bold text-banquet-red tracking-tight;
+    @apply font-bold text-banquet-red;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    @apply text-h2 font-semibold text-banquet-gold tracking-tight;
+    @apply font-semibold text-banquet-gold;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    @apply text-h3 font-medium text-banquet-gold;
+    @apply font-medium text-banquet-gold;
+    font-size: 18px;
+    line-height: 1.35;
   }
 }
 
@@ -29,41 +44,31 @@
   }
 
   .page-header {
-    @apply pb-1 border-b border-banquet-gold/25;
-  }
-
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-xl border
-      transition-all duration-200 ease-out
-      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-banquet-cream
-      disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+    @apply border-b border-banquet-gold/25 pb-1;
   }
 
   .btn-primary {
-    @apply btn bg-banquet-red text-white border-banquet-red shadow-md;
-  }
-
-  .btn-primary:hover:not(:disabled) {
-    @apply bg-[#b81030] shadow-lg -translate-y-0.5;
-  }
-
-  .btn-primary:focus {
-    --tw-ring-color: #DC143C;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium transition-all duration-200 ease-out;
+    @apply border-banquet-red bg-banquet-red text-white shadow-md;
+    @apply hover:-translate-y-0.5 hover:bg-[#b81030] hover:shadow-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-banquet-red focus:ring-offset-2;
+    @apply disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50;
+    --tw-ring-offset-color: #fffdd0;
   }
 
   .btn-secondary {
-    @apply btn bg-white/90 text-banquet-ink border-banquet-gold/60 shadow-sm;
-  }
-
-  .btn-secondary:hover:not(:disabled) {
-    @apply bg-banquet-peach/60 border-banquet-gold shadow-md -translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium transition-all duration-200 ease-out;
+    @apply border-banquet-gold/60 bg-white/90 text-banquet-ink shadow-sm;
+    @apply hover:-translate-y-0.5 hover:border-banquet-gold hover:bg-banquet-peach/60 hover:shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-banquet-gold focus:ring-offset-2;
+    @apply disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50;
+    --tw-ring-offset-color: #fffdd0;
   }
 
   .input {
-    @apply block w-full px-4 py-2.5 rounded-xl border border-banquet-gold/40 bg-white/95 text-body text-banquet-ink
-      transition-colors duration-200
-      placeholder:text-banquet-green/50
-      focus:outline-none focus:ring-2 focus:ring-banquet-red/25 focus:border-banquet-red;
+    @apply block w-full rounded-xl border border-banquet-gold/40 bg-white/95 px-4 py-2.5 text-banquet-ink transition-colors duration-200;
+    @apply placeholder:text-banquet-green/50 focus:border-banquet-red focus:outline-none focus:ring-2 focus:ring-banquet-red/25;
+    font-size: 16px;
   }
 
   .input-error {
@@ -71,60 +76,70 @@
   }
 
   .label {
-    @apply block text-sm font-medium text-banquet-ink mb-1.5;
+    @apply mb-1.5 block text-sm font-medium text-banquet-ink;
   }
 
   .card {
-    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-banquet-gold/30 p-5 shadow-card
-      transition-shadow duration-200;
+    @apply rounded-2xl border border-banquet-gold/30 bg-white/90 p-5 backdrop-blur-sm transition-shadow duration-200;
+    box-shadow: var(--shadow-card);
   }
 
   .card:hover {
-    @apply shadow-card-hover;
+    box-shadow: var(--shadow-card-hover);
   }
 
   .card-static {
-    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-banquet-gold/30 p-5 shadow-card;
+    @apply rounded-2xl border border-banquet-gold/30 bg-white/90 p-5 backdrop-blur-sm;
+    box-shadow: var(--shadow-card);
   }
 
   .stat-card {
-    @apply card-static flex flex-col justify-between min-h-[88px];
+    @apply flex min-h-[88px] flex-col justify-between rounded-2xl border border-banquet-gold/30 bg-white/90 p-5 backdrop-blur-sm;
+    box-shadow: var(--shadow-card);
   }
 
   .stat-card .stat-value {
-    @apply text-3xl font-bold text-banquet-red tabular-nums leading-none mt-2;
+    @apply mt-2 text-3xl font-bold tabular-nums leading-none text-banquet-red;
   }
 
   .room-card {
-    @apply rounded-2xl border border-banquet-gold/35 bg-white/80 overflow-hidden shadow-card
-      transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+    @apply overflow-hidden rounded-2xl border border-banquet-gold/35 bg-white/80 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .room-card:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-card-hover);
   }
 
   .nav-link {
-    @apply px-3 py-1.5 rounded-lg text-sm text-banquet-green transition-colors duration-200;
+    @apply rounded-lg px-3 py-1.5 text-sm text-banquet-green transition-colors duration-200;
   }
 
   .nav-link:hover {
-    @apply text-banquet-red bg-banquet-peach/40;
+    @apply bg-banquet-peach/40 text-banquet-red;
   }
 
   .nav-link-active {
-    @apply nav-link font-semibold text-banquet-red bg-banquet-peach/70;
+    @apply rounded-lg bg-banquet-peach/70 px-3 py-1.5 text-sm font-semibold text-banquet-red transition-colors duration-200;
   }
 
   .link-accent {
-    @apply text-banquet-red font-medium hover:text-[#b81030] transition-colors duration-200;
+    @apply font-medium text-banquet-red transition-colors duration-200 hover:text-[#b81030];
   }
 
   .text-secondary {
-    @apply text-aux text-banquet-green;
+    @apply text-banquet-green;
+    font-size: 12px;
+    line-height: 1.45;
   }
 
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 text-aux font-medium rounded-full bg-banquet-peach text-banquet-ink;
+    @apply inline-flex items-center rounded-full bg-banquet-peach px-2.5 py-0.5 font-medium text-banquet-ink;
+    font-size: 12px;
   }
 
   .auth-blob {
-    @apply pointer-events-none absolute rounded-full blur-3xl opacity-40;
+    @apply pointer-events-none absolute rounded-full opacity-40 blur-3xl;
   }
 }

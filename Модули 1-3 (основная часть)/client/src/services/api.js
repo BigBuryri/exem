@@ -17,18 +17,30 @@ api.interceptors.request.use(
     }
     return config
   },
-  error => {
-    return Promise.reject(error)
-  }
+  error => Promise.reject(error)
 )
 
 api.interceptors.response.use(
   response => response,
   error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
+    const status = error.response?.status
+    const url = error.config?.url || ''
+    const isAuthRequest = url.includes('/auth/login') || url.includes('/auth/register')
+    const isOnAuthPage = ['/login', '/register'].includes(window.location.pathname)
+
+    if (status === 401 && !isAuthRequest) {
+      const requestToken = (error.config?.headers?.Authorization || '').replace('Bearer ', '')
+      const currentToken = localStorage.getItem('token') || ''
+
+      // Не сбрасываем токен, если 401 пришёл от устаревшего запроса
+      if (!requestToken || requestToken === currentToken) {
+        localStorage.removeItem('token')
+        if (!isOnAuthPage) {
+          window.location.href = '/login'
+        }
+      }
     }
+
     return Promise.reject(error)
   }
 )
