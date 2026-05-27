@@ -168,9 +168,3 @@ npm run dev
   <img src="Модуль%204%20(вариативная%20часть)/Screenshots/продукты1.png" width="320" alt="Продукты, верх">&nbsp;&nbsp;
   <img src="Модуль%204%20(вариативная%20часть)/Screenshots/продукты2.png" width="320" alt="Продукты, низ">
 </p>
-
----
-
-## Автор
-
-Чернышова Варвара Юрьевна — https://github.com/BigBuryri
