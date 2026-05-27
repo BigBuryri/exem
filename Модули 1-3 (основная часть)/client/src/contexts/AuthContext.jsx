@@ -4,6 +4,17 @@ import toast from 'react-hot-toast'
 
 const AuthContext = createContext({})
 
+const extractApiErrorMessage = (error, fallbackMessage) => {
+  const responseData = error?.response?.data
+  if (responseData?.message) {
+    return responseData.message
+  }
+  if (Array.isArray(responseData?.errors) && responseData.errors.length > 0) {
+    return responseData.errors[0]?.msg || fallbackMessage
+  }
+  return fallbackMessage
+}
+
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (!context) {
@@ -42,8 +53,9 @@ export const AuthProvider = ({ children }) => {
       toast.success('Вход выполнен успешно!')
       return { success: true, user: response.user }
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Ошибка входа')
-      return { success: false, error: error.response?.data?.message }
+      const message = extractApiErrorMessage(error, 'Ошибка входа')
+      toast.error(message)
+      return { success: false, error: message }
     }
   }
 
@@ -55,8 +67,9 @@ export const AuthProvider = ({ children }) => {
       toast.success('Регистрация успешна!')
       return { success: true, user: response.user }
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Ошибка регистрации')
-      return { success: false, error: error.response?.data?.message }
+      const message = extractApiErrorMessage(error, 'Ошибка регистрации')
+      toast.error(message)
+      return { success: false, error: message }
     }
   }
 

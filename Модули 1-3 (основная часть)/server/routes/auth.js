@@ -7,16 +7,26 @@ const { User } = require('../models');
 const phonePattern = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
 
 router.post('/register', [
-  body('login').isLength({ min: 6 }).matches(/^[a-zA-Z0-9]+$/),
-  body('password').isLength({ min: 8 }),
-  body('fullName').matches(/^[а-яА-ЯёЁ\s]+$/),
-  body('phone').matches(phonePattern).withMessage('Формат: +7 (999) 123-45-67'),
-  body('email').isEmail()
+  body('login')
+    .isLength({ min: 6 }).withMessage('Логин: минимум 6 символов')
+    .matches(/^[a-zA-Z0-9]+$/).withMessage('Логин: только латиница и цифры'),
+  body('password')
+    .isLength({ min: 8 }).withMessage('Пароль: минимум 8 символов'),
+  body('fullName')
+    .matches(/^[а-яА-ЯёЁ\s]+$/).withMessage('ФИО: только кириллица и пробелы'),
+  body('phone')
+    .matches(phonePattern).withMessage('Телефон: формат +7 (999) 123-45-67'),
+  body('email')
+    .isEmail().withMessage('Email: неверный формат')
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      const validationErrors = errors.array();
+      return res.status(400).json({
+        message: validationErrors[0].msg,
+        errors: validationErrors
+      });
     }
 
     const { login, password, fullName, phone, email } = req.body;
@@ -24,6 +34,10 @@ router.post('/register', [
     const existingUser = await User.findOne({ where: { login } });
     if (existingUser) {
       return res.status(400).json({ message: 'Пользователь с таким логином уже существует' });
+    }
+    const existingEmail = await User.findOne({ where: { email } });
+    if (existingEmail) {
+      return res.status(400).json({ message: 'Пользователь с таким email уже существует' });
     }
 
     const user = await User.create({
@@ -53,6 +67,12 @@ router.post('/register', [
     });
   } catch (error) {
     console.error(error);
+    if (error.name === 'SequelizeUniqueConstraintError') {
+      return res.status(400).json({ message: 'Пользователь с такими данными уже существует' });
+    }
+    if (error.name === 'SequelizeValidationError') {
+      return res.status(400).json({ message: error.errors?.[0]?.message || 'Некорректные данные регистрации' });
+    }
     res.status(500).json({ message: 'Ошибка при регистрации' });
   }
 });
