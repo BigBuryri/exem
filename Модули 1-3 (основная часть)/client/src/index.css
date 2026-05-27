@@ -4,73 +4,127 @@
 
 @layer base {
   body {
-    @apply antialiased text-base text-banquet-ink;
-    background-color: #f5f5f5;
+    @apply antialiased font-sans text-body text-banquet-ink;
+    background: linear-gradient(165deg, #FFFDD0 0%, #FFFDD0 45%, #FFDAB9 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 
   h1 {
-    @apply text-2xl font-bold text-banquet-ink;
+    @apply text-h1 font-bold text-banquet-red tracking-tight;
   }
 
   h2 {
-    @apply text-xl font-semibold text-banquet-ink;
+    @apply text-h2 font-semibold text-banquet-gold tracking-tight;
   }
 
   h3 {
-    @apply text-lg font-medium text-banquet-ink;
+    @apply text-h3 font-medium text-banquet-gold;
   }
 }
 
 @layer components {
+  .page-shell {
+    @apply space-y-8;
+  }
+
+  .page-header {
+    @apply pb-1 border-b border-banquet-gold/25;
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded border focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-xl border
+      transition-all duration-200 ease-out
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-banquet-cream
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
   }
 
   .btn-primary {
-    @apply btn bg-banquet-wine text-white border-banquet-wine;
+    @apply btn bg-banquet-red text-white border-banquet-red shadow-md;
   }
 
   .btn-primary:hover:not(:disabled) {
-    @apply bg-[#6a2d3c];
+    @apply bg-[#b81030] shadow-lg -translate-y-0.5;
   }
 
   .btn-primary:focus {
-    --tw-ring-color: #7A3344;
+    --tw-ring-color: #DC143C;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-banquet-ink border-gray-300;
+    @apply btn bg-white/90 text-banquet-ink border-banquet-gold/60 shadow-sm;
   }
 
   .btn-secondary:hover:not(:disabled) {
-    @apply bg-gray-50;
+    @apply bg-banquet-peach/60 border-banquet-gold shadow-md -translate-y-0.5;
   }
 
   .input {
-    @apply block w-full px-3 py-2 rounded border border-gray-300 bg-white text-base focus:outline-none focus:ring-1 focus:ring-banquet-wine focus:border-banquet-wine;
+    @apply block w-full px-4 py-2.5 rounded-xl border border-banquet-gold/40 bg-white/95 text-body text-banquet-ink
+      transition-colors duration-200
+      placeholder:text-banquet-green/50
+      focus:outline-none focus:ring-2 focus:ring-banquet-red/25 focus:border-banquet-red;
   }
 
   .input-error {
-    @apply border-red-500;
+    @apply border-banquet-red ring-2 ring-banquet-red/20;
   }
 
   .label {
-    @apply block text-sm font-medium text-banquet-ink mb-1;
+    @apply block text-sm font-medium text-banquet-ink mb-1.5;
   }
 
   .card {
-    @apply bg-white rounded border border-gray-200 p-4;
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-banquet-gold/30 p-5 shadow-card
+      transition-shadow duration-200;
+  }
+
+  .card:hover {
+    @apply shadow-card-hover;
+  }
+
+  .card-static {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-banquet-gold/30 p-5 shadow-card;
+  }
+
+  .stat-card {
+    @apply card-static flex flex-col justify-between min-h-[88px];
+  }
+
+  .stat-card .stat-value {
+    @apply text-3xl font-bold text-banquet-red tabular-nums leading-none mt-2;
+  }
+
+  .room-card {
+    @apply rounded-2xl border border-banquet-gold/35 bg-white/80 overflow-hidden shadow-card
+      transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .nav-link {
+    @apply px-3 py-1.5 rounded-lg text-sm text-banquet-green transition-colors duration-200;
+  }
+
+  .nav-link:hover {
+    @apply text-banquet-red bg-banquet-peach/40;
+  }
+
+  .nav-link-active {
+    @apply nav-link font-semibold text-banquet-red bg-banquet-peach/70;
   }
 
   .link-accent {
-    @apply text-banquet-wine underline hover:no-underline;
+    @apply text-banquet-red font-medium hover:text-[#b81030] transition-colors duration-200;
   }
 
   .text-secondary {
-    @apply text-sm text-banquet-muted;
+    @apply text-aux text-banquet-green;
   }
 
   .badge {
-    @apply inline-block px-2 py-0.5 text-xs font-medium rounded bg-gray-100 text-banquet-ink;
+    @apply inline-flex items-center px-2.5 py-0.5 text-aux font-medium rounded-full bg-banquet-peach text-banquet-ink;
+  }
+
+  .auth-blob {
+    @apply pointer-events-none absolute rounded-full blur-3xl opacity-40;
   }
 }

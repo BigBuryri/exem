@@ -194,12 +194,14 @@ export default function ApplicationForm() {
   }
 
   return (
-    <div className="max-w-lg mx-auto">
-      <h1 className="mb-4">{config.labels?.createButton || 'Оформить бронирование'}</h1>
-      <div className="card">
+    <div className="page-shell max-w-xl mx-auto">
+      <header className="page-header">
+        <h1>{config.labels?.createButton || 'Оформить бронирование'}</h1>
+        <p className="text-secondary mt-2">Заполните все обязательные поля</p>
+      </header>
+      <div className="card-static">
         <div>
-          <p className="text-secondary text-sm mb-4">Заполните все обязательные поля.</p>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {config.application.fields.map(field => renderField(field))}
             
             <div className="flex justify-end space-x-3 pt-4">

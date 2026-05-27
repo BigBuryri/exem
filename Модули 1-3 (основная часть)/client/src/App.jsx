@@ -25,17 +25,23 @@ function App() {
             toastOptions={{
               duration: 4000,
               style: {
-                background: '#363636',
-                color: '#fff',
+                background: '#FFFDD0',
+                color: '#000000',
+                border: '1px solid #DAA520',
+                fontFamily: 'Oswald, sans-serif',
               },
               success: {
                 style: {
-                  background: '#10b981',
+                  background: '#FFFDD0',
+                  color: '#006400',
+                  border: '1px solid #006400',
                 },
               },
               error: {
                 style: {
-                  background: '#ef4444',
+                  background: '#FFFDD0',
+                  color: '#DC143C',
+                  border: '1px solid #DC143C',
                 },
               },
             }}

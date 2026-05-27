@@ -14,9 +14,9 @@ export function getFieldLabel(config, key) {
 
 export function getStatusBadgeClass(color) {
   const map = {
-    blue: 'badge bg-gray-100',
-    yellow: 'badge bg-yellow-100',
-    green: 'badge bg-green-100',
+    blue: 'badge bg-banquet-peach text-banquet-ink',
+    yellow: 'badge bg-banquet-gold/30 text-banquet-ink',
+    green: 'badge bg-banquet-green/15 text-banquet-green',
   }
   return map[color] || map.blue
 }

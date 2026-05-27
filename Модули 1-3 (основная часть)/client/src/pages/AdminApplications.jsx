@@ -90,13 +90,13 @@ export default function AdminApplications() {
   }
 
   return (
-    <div className="space-y-5 animate-in">
-      <div>
-        <h1 className="!text-[28px]">Управление заявками</h1>
-        <p className="text-secondary">Все заявки пользователей</p>
-      </div>
+    <div className="page-shell">
+      <header className="page-header">
+        <h1>Управление заявками</h1>
+        <p className="text-secondary mt-2">Все заявки пользователей</p>
+      </header>
 
-      <div className="card !p-4 space-y-3">
+      <div className="card-static space-y-4">
         <div>
           <label htmlFor="status" className="label">Статус</label>
           <select
@@ -166,13 +166,13 @@ export default function AdminApplications() {
       </div>
 
       {applications.length === 0 ? (
-        <div className="card text-center py-8">
+        <div className="card-static text-center py-10">
           <p className="text-banquet-ink">Заявки не найдены</p>
         </div>
       ) : (
         <div className="space-y-3">
           {applications.map((app) => (
-            <article key={app.id} className="card !p-4">
+            <article key={app.id} className="card-static">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <p className="font-semibold text-banquet-red">Заявка №{app.id}</p>
@@ -237,7 +237,7 @@ export default function AdminApplications() {
       )}
 
       {totalPages > 1 && (
-        <div className="card !p-3 flex items-center justify-between">
+        <div className="card-static flex items-center justify-between py-3">
           <button
             type="button"
             onClick={() => setPage(page - 1)}

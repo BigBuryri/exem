@@ -60,16 +60,16 @@ export default function Applications() {
   }
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between gap-3">
+    <div className="page-shell">
+      <header className="page-header flex items-center justify-between gap-3">
         <h1>{config.labels?.viewButton || 'Мои заявки'}</h1>
         <Link to="/applications/new" className="btn-primary text-sm px-3 py-2 shrink-0">
           + Новая
         </Link>
-      </div>
+      </header>
 
       {applications.length === 0 ? (
-        <div className="card text-center py-10">
+        <div className="card-static text-center py-12">
           <p className="text-banquet-ink">Заявок пока нет</p>
           <p className="text-secondary mt-1">Оформите первое бронирование</p>
           <Link to="/applications/new" className="btn-primary inline-flex mt-5">
@@ -79,7 +79,7 @@ export default function Applications() {
       ) : (
         <div className="space-y-3">
           {applications.map((app) => (
-            <article key={app.id} className="card !p-4">
+            <article key={app.id} className="card-static">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <p className="font-semibold text-banquet-red">

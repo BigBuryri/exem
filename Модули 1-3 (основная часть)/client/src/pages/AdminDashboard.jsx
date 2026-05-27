@@ -24,7 +24,11 @@ export default function AdminDashboard() {
   }
 
   if (loading) {
-    return <p className="text-center py-10 text-banquet-muted">Загрузка...</p>
+    return (
+      <div className="flex items-center justify-center h-64">
+        <p className="text-secondary">Загрузка...</p>
+      </div>
+    )
   }
 
   const statCards = [
@@ -36,22 +40,22 @@ export default function AdminDashboard() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div>
+    <div className="page-shell">
+      <header className="page-header">
         <h1>Панель администратора</h1>
-        <p className="text-secondary">{config.title}</p>
-      </div>
+        <p className="text-secondary mt-2">{config.title}</p>
+      </header>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {statCards.map((stat) => (
-          <div key={stat.name} className="card">
-            <p className="text-secondary text-sm">{stat.name}</p>
-            <p className="text-2xl font-bold mt-1">{stat.value}</p>
+          <div key={stat.name} className="stat-card">
+            <p className="text-secondary">{stat.name}</p>
+            <p className="stat-value">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="card">
+      <div className="card-static">
         <Link to="/admin/applications" className="btn-primary">Все заявки</Link>
       </div>
     </div>
