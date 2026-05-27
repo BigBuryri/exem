@@ -47,7 +47,7 @@ npm run dev
 
 ### База данных
 
-![ER-диаграмма](Модули%201-3%20(основная%20часть)/database/er-diagram.drawio.png)
+![ER-диаграмма](Модули%201-3%20(основная%20часть)/database/диаграмма.jpg)
 
 Файлы: `Модули 1-3 (основная часть)/database/init.sql`, `er-diagram.drawio`.
 
